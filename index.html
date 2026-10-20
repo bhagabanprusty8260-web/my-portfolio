@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Bhagaban Prusty | Full-Stack Developer</title>
+  <meta name="description" content="Portfolio of Bhagaban Prusty - 3rd Year B.Tech CSE Student at Nalanda Institute of Technology. Full-Stack Developer, Hackathon Winner, and Creator of CampusOS.">
+  <meta name="author" content="Bhagaban Prusty">
+
+  <!-- Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. LUXURY FROSTED GLASSMORPHIC DESIGN TOKENS (UNCHANGED)
+       ========================================================================== */
+    :root {
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+
+      --canvas-bg: #f8fafc;
+      --glass-bg: rgba(255, 255, 255, 0.68);
+      --glass-bg-subtle: rgba(255, 255, 255, 0.45);
+      --glass-bg-solid: rgba(255, 255, 255, 0.88);
+      --glass-border: rgba(255, 255, 255, 0.85);
+      --glass-border-subtle: rgba(255, 255, 255, 0.55);
+      --glass-border-highlight: rgba(255, 255, 255, 0.95);
+
+      --text-main: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+
+      --accent-primary: #6366f1;
+      --accent-secondary: #8b5cf6;
+      --accent-cyan: #06b6d4;
+      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #3b82f6 100%);
+      --accent-gradient-subtle: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+
+      --shadow-glass: 0 20px 40px -15px rgba(15, 23, 42, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+      --shadow-glass-hover: 0 25px 50px -12px rgba(99, 102, 241, 0.14), 0 0 0 1px rgba(255, 255, 255, 1) inset;
+      --shadow-card: 0 12px 32px -8px rgba(15, 23, 42, 0.04), 0 2px 8px -2px rgba(15, 23, 42, 0.02);
+
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+      --radius-xl: 36px;
+      --radius-pill: 9999px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--canvas-bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .ambient-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(216, 180, 254, 0.32) 0%, transparent 45%),
+        radial-gradient(circle at 85% 25%, rgba(186, 230, 253, 0.38) 0%, transparent 50%),
+        radial-gradient(circle at 50% 55%, rgba(243, 232, 255, 0.4) 0%, transparent 55%),
+        radial-gradient(circle at 80% 85%, rgba(224, 231, 255, 0.45) 0%, transparent 45%),
+        radial-gradient(circle at 10% 80%, rgba(254, 215, 226, 0.28) 0%, transparent 40%),
+        #f8fafc;
+    }
+
+    .ambient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(55px);
+      opacity: 0.65;
+      animation: floatOrb 20s ease-in-out infinite alternate;
+    }
+
+    .ambient-orb-1 {
+      width: 500px;
+      height: 500px;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.22), rgba(99, 102, 241, 0.28));
+      top: -120px;
+      left: 18%;
+    }
+
+    .ambient-orb-2 {
+      width: 580px;
+      height: 580px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(192, 132, 252, 0.28));
+      top: 30%;
+      right: -120px;
+      animation-duration: 25s;
+      animation-delay: -5s;
+    }
+
+    .ambient-orb-3 {
+      width: 440px;
+      height: 440px;
+      background: linear-gradient(135deg, rgba(244, 114, 182, 0.18), rgba(129, 140, 248, 0.22));
+      bottom: 5%;
+      left: -90px;
+      animation-duration: 22s;
+      animation-delay: -10s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(35px, -45px) scale(1.06); }
+      100% { transform: translate(-25px, 35px) scale(0.97); }
+    }
+
+    .app-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+    }
+
+    /* NAVBAR (UNCHANGED STYLES) */
+    .nav-floating-container { position: sticky; top: 1.25rem; z-index: 100; margin-bottom: 2.5rem; }
+    .nav-glass-bar { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.9rem; background: var(--glass-bg); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); border: 1px solid var(--glass-border); border-radius: var(--radius-pill); box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.95); transition: all 0.3s ease; }
+    .nav-glass-bar:hover { background: rgba(255, 255, 255, 0.82); box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1); }
+    .nav-brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: inherit; }
+    .brand-icon-box { width: 40px; height: 40px; border-radius: 12px; background: #0f172a; color: #ffffff; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 800; font-size: 1.05rem; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25); }
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-name { font-family: var(--font-heading); font-size: 0.98rem; font-weight: 700; color: var(--text-main); line-height: 1.15; }
+    .brand-sub { font-size: 0.72rem; color: var(--text-muted); font-weight: 500; }
+    .nav-menu-pills { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+    .nav-pill-link { padding: 0.45rem 0.95rem; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-decoration: none; border-radius: var(--radius-pill); transition: all 0.2s ease; display: inline-block; }
+    .nav-pill-link:hover, .nav-pill-link.active { color: var(--text-main); background: #ffffff; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06); }
+    .nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-pill-btn { padding: 0.5rem 1.15rem; font-size: 0.85rem; font-weight: 600; border-radius: var(--radius-pill); text-decoration: none; display: inline-flex; align-items: center; gap: 0.45rem; transition: all 0.25s ease; cursor: pointer; }
+    .nav-pill-btn.talk-btn { background: rgba(255, 255, 255, 0.85); color: var(--text-main); border: 1px solid var(--glass-border); box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04); }
+    .nav-pill-btn.talk-btn:hover { background: #ffffff; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08); border-color: #cbd5e1; }
+    .nav-pill-btn.resume-btn-nav { background: #0f172a; color: #ffffff; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2); }
+    .nav-pill-btn.resume-btn-nav:hover { background: #1e293b; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(15, 23, 42, 0.3); }
+    .nav-mobile-toggle { display: none; background: rgba(255, 255, 255, 0.85); border: 1px solid var(--glass-border); border-radius: 50%; width: 40px; height: 40px; align-items: center; justify-content: center; cursor: pointer; color: var(--text-main); }
+
+    /* HERO (UNCHANGED STYLES) */
+    .hero-section { padding: 1.5rem 0 4rem; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3.5rem; align-items: center; }
+    .hero-left { position: relative; }
+    .hero-greeting-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.9rem; border-radius: var(--radius-pill); background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.2); color: #6366f1; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 1.25rem; text-transform: uppercase; }
+    .hero-name { font-family: var(--font-heading); font-size: 3.8rem; font-weight: 800; color: var(--text-main); line-height: 1.08; letter-spacing: -0.035em; margin-bottom: 0.4rem; }
+    .hero-title-gradient { font-family: var(--font-heading); font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1.25rem; }
+    .hero-desc { font-size: 1.02rem; color: var(--text-secondary); line-height: 1.7; max-width: 520px; margin-bottom: 2rem; }
+    .hero-cta-group { display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+    .btn-dark-pill { background: #0f172a; color: #ffffff; font-weight: 600; font-size: 0.95rem; padding: 0.85rem 1.85rem; border-radius: var(--radius-pill); text-decoration: none; display: inline-flex; align-items: center; gap: 0.55rem; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.3); transition: all 0.25s ease; border: 1px solid #0f172a; }
+    .btn-dark-pill:hover { background: #1e293b; transform: translateY(-2px); box-shadow: 0 14px 28px -5px rgba(15, 23, 42, 0.4); }
+    .btn-glass-pill { background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--glass-border); color: var(--text-main); font-weight: 600; font-size: 0.95rem; padding: 0.85rem 1.85rem; border-radius: var(--radius-pill); text-decoration: none; display: inline-flex; align-items: center; gap: 0.55rem; box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.9); transition: all 0.25s ease; }
+    .btn-glass-pill:hover { background: #ffffff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06); border-color: #cbd5e1; }
+    .hero-affiliations { padding-top: 1.5rem; border-top: 1px solid rgba(226, 232, 240, 0.7); }
+    .affiliations-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; }
+    .affiliations-pills { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; }
+    .affil-item { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); opacity: 0.85; transition: opacity 0.2s ease; }
+    .affil-item:hover { opacity: 1; }
+    .affil-dot { width: 6px; height: 6px; border-radius: 50%; background: #6366f1; }
+    
+    .hero-visual-col { position: relative; display: flex; justify-content: center; align-items: center; }
+    .organic-glass-card { position: relative; width: 100%; max-width: 420px; height: 520px; background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); border: 1.5px solid rgba(255, 255, 255, 0.9); border-radius: 48px 48px 140px 48px; box-shadow: 0 25px 60px -15px rgba(99, 102, 241, 0.14), inset 0 2px 0 rgba(255, 255, 255, 1); overflow: hidden; display: flex; align-items: flex-end; justify-content: center; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease; animation: floatFrame 7s ease-in-out infinite alternate; will-change: transform; }
+    .organic-glass-card:hover { transform: translateY(-8px) scale(1.015); box-shadow: 0 32px 70px -15px rgba(99, 102, 241, 0.22), inset 0 2px 0 rgba(255, 255, 255, 1); }
+    .hero-headshot-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; border-radius: inherit; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .organic-glass-card:hover .hero-headshot-img { transform: scale(1.025); }
+    @keyframes floatFrame { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-9px) rotate(0.4deg); } 100% { transform: translateY(-4px) rotate(-0.3deg); } }
+
+    .typing-cursor { display: inline-block; font-weight: 300; color: #6366f1; margin-left: 2px; animation: blinkCursor 0.9s infinite; }
+    @keyframes blinkCursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    .reveal-item { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); will-change: opacity, transform; }
+    .reveal-item.revealed { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; } .delay-4 { transition-delay: 0.4s; }
+
+    .live-radar-dot { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 8px; height: 8px; }
+    .live-radar-dot::before { content: ''; position: absolute; width: 100%; height: 100%; border-radius: 50%; background: #10b981; animation: liveRadarPulse 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+    .live-radar-dot::after { content: ''; position: relative; width: 8px; height: 8px; border-radius: 50%; background: #10b981; }
+    @keyframes liveRadarPulse { 0% { transform: scale(1); opacity: 0.9; } 70% { transform: scale(3.2); opacity: 0; } 100% { transform: scale(3.5); opacity: 0; } }
+
+    /* SHARED SECTIONS (UNCHANGED STYLES) */
+    .section-container { padding: 4.5rem 0; }
+    .section-label-pill { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6366f1; margin-bottom: 0.5rem; display: inline-block; }
+    .section-main-title { font-family: var(--font-heading); font-size: 2.3rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 0.85rem; }
+    .section-sub-desc { font-size: 1rem; color: var(--text-muted); max-width: 600px; line-height: 1.65; }
+
+    /* ABOUT (UNCHANGED STYLES) */
+    .about-card-wrapper { background: var(--glass-bg); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); border: 1.5px solid var(--glass-border); border-radius: var(--radius-xl); padding: 3rem; box-shadow: var(--shadow-glass); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .about-stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2rem; }
+    .stat-glass-card { background: rgba(255, 255, 255, 0.5); border: 1px solid rgba(255, 255, 255, 0.85); border-radius: var(--radius-md); padding: 1.4rem 1rem; text-align: center; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.02); transition: all 0.25s ease; }
+    .stat-glass-card:hover { background: #ffffff; transform: translateY(-3px); box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05); }
+    .stat-icon-wrap { width: 38px; height: 38px; border-radius: 10px; background: rgba(99, 102, 241, 0.08); color: #6366f1; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; }
+    .stat-bold-number { font-family: var(--font-heading); font-size: 1.85rem; font-weight: 800; color: var(--text-main); line-height: 1; }
+    .stat-caption { font-size: 0.76rem; color: var(--text-muted); font-weight: 600; margin-top: 0.35rem; }
+    .about-text-content { font-size: 1.02rem; color: var(--text-secondary); line-height: 1.8; }
+    .about-text-content p { margin-bottom: 1.25rem; }
+
+    /* SERVICES (UNCHANGED STYLES) */
+    .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    .service-glass-card { background: var(--glass-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 2rem 1.5rem; box-shadow: var(--shadow-glass); transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+    .service-glass-card:hover { background: rgba(255, 255, 255, 0.85); transform: translateY(-6px); box-shadow: var(--shadow-glass-hover); border-color: rgba(255, 255, 255, 1); }
+    .service-icon-box { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.05); }
+    .icon-amber { background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.25)); color: #d97706; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .icon-violet { background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(168, 85, 247, 0.25)); color: #9333ea; border: 1px solid rgba(168, 85, 247, 0.3); }
+    .icon-blue { background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.25)); color: #2563eb; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .icon-teal { background: linear-gradient(135deg, rgba(20, 184, 166, 0.15), rgba(20, 184, 166, 0.25)); color: #0d9488; border: 1px solid rgba(20, 184, 166, 0.3); }
+    .service-title { font-family: var(--font-heading); font-size: 1.22rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.65rem; line-height: 1.3; }
+    .service-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; }
+    .service-arrow-link { display: flex; align-items: center; justify-content: flex-end; color: var(--text-light); transition: all 0.2s ease; }
+    .service-glass-card:hover .service-arrow-link { color: var(--accent-primary); transform: translate(3px, -3px); }
+
+    /* TOOLS (UNCHANGED STYLES) */
+    .tools-dock-card { background: var(--glass-bg); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); border: 1.5px solid var(--glass-border); border-radius: var(--radius-xl); padding: 2.25rem 2.5rem; box-shadow: var(--shadow-glass); margin-top: 2rem; }
+    .tools-grid { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.25rem; }
+    .tech-dock-pill { background: rgba(255, 255, 255, 0.65); border: 1px solid rgba(255, 255, 255, 0.95); border-radius: var(--radius-pill); padding: 0.65rem 1.25rem; display: inline-flex; align-items: center; gap: 0.65rem; font-size: 0.88rem; font-weight: 600; color: var(--text-secondary); box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02); transition: all 0.25s ease; }
+    .tech-dock-pill:hover { background: #ffffff; color: var(--text-main); transform: translateY(-3px); box-shadow: 0 8px 18px rgba(99, 102, 241, 0.1); border-color: #cbd5e1; }
+    .tech-icon-dot { width: 8px; height: 8px; border-radius: 50%; background: #6366f1; }
+
+    /* PROJECTS (UNCHANGED STYLES) */
+    .projects-header-row { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+    .projects-3col-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+    .project-glass-card { background: var(--glass-bg); backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-glass); transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; }
+    .project-glass-card:hover { background: rgba(255, 255, 255, 0.85); transform: translateY(-8px); box-shadow: var(--shadow-glass-hover); border-color: rgba(255, 255, 255, 1); }
+    .project-card-thumb { position: relative; width: 100%; height: 200px; overflow: hidden; background: #e2e8f0; }
+    .project-card-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .project-glass-card:hover .project-card-thumb img { transform: scale(1.05); }
+    .project-badge-pill { position: absolute; top: 1rem; left: 1rem; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px); color: #ffffff; font-size: 0.72rem; font-weight: 700; padding: 0.3rem 0.75rem; border-radius: var(--radius-pill); letter-spacing: 0.02em; }
+    .project-card-body { padding: 1.75rem; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+    .project-meta-top { font-size: 0.75rem; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.35rem; }
+    .project-card-title { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.65rem; line-height: 1.35; }
+    .project-card-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.25rem; }
+    .project-tech-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+    .project-tech-tag { font-size: 0.74rem; font-weight: 600; color: var(--text-secondary); background: rgba(255, 255, 255, 0.7); padding: 0.25rem 0.65rem; border-radius: var(--radius-pill); border: 1px solid rgba(226, 232, 240, 0.8); }
+    .project-actions-row { display: flex; align-items: center; gap: 0.75rem; padding-top: 1rem; border-top: 1px solid rgba(226, 232, 240, 0.7); }
+    .project-link-action { font-size: 0.82rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; color: var(--text-secondary); transition: color 0.2s ease; }
+    .project-link-action:hover { color: var(--text-main); }
+    .project-link-action.btn-live { background: #0f172a; color: #ffffff; padding: 0.45rem 1rem; border-radius: var(--radius-pill); margin-left: auto; box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15); }
+    .project-link-action.btn-live:hover { background: #1e293b; color: #ffffff; transform: translateY(-1px); }
+
+    /* JOURNEY (UNCHANGED STYLES) */
+    .journey-steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    .step-glass-card { background: var(--glass-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 2rem 1.5rem; box-shadow: var(--shadow-glass); transition: all 0.3s ease; display: flex; flex-direction: column; position: relative; }
+    .step-glass-card:hover { background: rgba(255, 255, 255, 0.85); transform: translateY(-5px); box-shadow: var(--shadow-glass-hover); }
+    .step-num-badge { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: #6366f1; opacity: 0.85; margin-bottom: 1rem; line-height: 1; }
+    .step-card-title { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.35rem; line-height: 1.3; }
+    .step-org-subtitle { font-size: 0.8rem; font-weight: 600; color: var(--accent-secondary); margin-bottom: 0.85rem; }
+    .step-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* CERTS (UNCHANGED STYLES) */
+    .certs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    .cert-glass-card { background: var(--glass-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); padding: 1.85rem 1.5rem; box-shadow: var(--shadow-glass); transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; }
+    .cert-glass-card:hover { background: #ffffff; transform: translateY(-4px); box-shadow: var(--shadow-glass-hover); }
+    .cert-issuer-badge { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.65rem; }
+    .cert-name { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: var(--text-main); line-height: 1.35; margin-bottom: 0.5rem; }
+    .cert-highlight { font-size: 0.82rem; font-weight: 700; color: #10b981; margin-bottom: 0.35rem; }
+    .cert-skills { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* CONTACT (UNCHANGED STYLES) */
+    .contact-card-wrapper { background: var(--glass-bg); backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px); border: 1.5px solid var(--glass-border); border-radius: var(--radius-xl); padding: 3.5rem; box-shadow: var(--shadow-glass); position: relative; overflow: hidden; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: 4rem; align-items: center; }
+    .contact-info-col h3 { font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: var(--text-main); line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .contact-info-col p { font-size: 0.98rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; }
+    .contact-items-list { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2.5rem; }
+    .contact-row-item { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--text-secondary); font-size: 0.95rem; font-weight: 600; transition: color 0.2s ease; }
+    .contact-row-item:hover { color: var(--text-main); }
+    .contact-icon-bubble { width: 44px; height: 44px; border-radius: 12px; background: rgba(255, 255, 255, 0.8); border: 1px solid var(--glass-border); color: #6366f1; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03); }
+    .social-pills-glass { display: flex; align-items: center; gap: 0.75rem; }
+    .social-pill-btn { width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 255, 255, 0.8); border: 1px solid var(--glass-border); color: var(--text-secondary); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.25s ease; }
+    .social-pill-btn:hover { background: #0f172a; color: #ffffff; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(15, 23, 42, 0.2); }
+    .contact-form-glass { background: rgba(255, 255, 255, 0.65); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: var(--radius-lg); padding: 2.25rem; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04); position: relative; }
+    .form-status-banner { display: none; padding: 0.85rem 1.15rem; border-radius: var(--radius-md); font-size: 0.88rem; margin-bottom: 1.25rem; }
+    .form-status-banner.success { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); color: #065f46; }
+    .form-status-banner.error { background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.3); color: #991b1b; }
+    .glass-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .glass-input-field { width: 100%; background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(226, 232, 240, 0.9); border-radius: var(--radius-md); padding: 0.9rem 1.15rem; font-family: var(--font-body); font-size: 0.9rem; color: var(--text-main); outline: none; transition: all 0.2s ease; }
+    .glass-input-field:focus { background: #ffffff; border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15); }
+    .glass-textarea { width: 100%; min-height: 120px; resize: vertical; margin-bottom: 1.25rem; }
+    .form-submit-pill-btn { width: 100%; background: #0f172a; color: #ffffff; border: none; border-radius: var(--radius-pill); padding: 0.95rem 1.5rem; font-family: var(--font-body); font-weight: 700; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.3); transition: all 0.25s ease; }
+    .form-submit-pill-btn:hover { background: #1e293b; transform: translateY(-2px); box-shadow: 0 14px 30px -5px rgba(15, 23, 42, 0.4); }
+    .ambient-contact-orb { position: absolute; bottom: -40px; right: -30px; width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), rgba(216, 180, 254, 0.4) 50%, rgba(139, 92, 246, 0.2) 100%); backdrop-filter: blur(16px); border: 1.5px solid rgba(255, 255, 255, 0.9); box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15), inset -4px -4px 10px rgba(139, 92, 246, 0.2), inset 4px 4px 10px rgba(255, 255, 255, 0.9); pointer-events: none; opacity: 0.85; }
+
+    /* FOOTER (UNCHANGED STYLES) */
+    .glass-footer { margin-top: 4rem; padding: 2.5rem 0 3.5rem; border-top: 1px solid rgba(226, 232, 240, 0.7); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-left { display: flex; align-items: center; gap: 0.75rem; }
+    .footer-copy { font-size: 0.85rem; color: var(--text-muted); }
+    .footer-nav { display: flex; align-items: center; gap: 1.25rem; }
+    .footer-nav a { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-decoration: none; transition: color 0.2s ease; }
+    .footer-nav a:hover { color: var(--text-main); }
+
+    .toast-notification { position: fixed; bottom: 2rem; right: 2rem; background: #0f172a; color: #ffffff; padding: 0.85rem 1.4rem; border-radius: var(--radius-pill); font-size: 0.88rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 14px 35px rgba(0, 0, 0, 0.25); z-index: 1000; opacity: 0; transform: translateY(20px); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none; }
+    .toast-notification.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+    /* MOBILE NAV (UNCHANGED STYLES) */
+    .mobile-drawer-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .mobile-drawer-sheet { position: fixed; top: 0; right: 0; width: 85%; max-width: 380px; height: 100%; background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); border-left: 1px solid var(--glass-border); box-shadow: -20px 0 50px rgba(0, 0, 0, 0.1); z-index: 201; padding: 2rem 1.5rem; display: flex; flex-direction: column; justify-content: space-between; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); overflow-y: auto; }
+    .mobile-drawer-overlay.open { opacity: 1; pointer-events: auto; }
+    .mobile-drawer-overlay.open .mobile-drawer-sheet { transform: translateX(0); }
+    .mobile-drawer-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
+    .mobile-drawer-close { width: 40px; height: 40px; border-radius: 50%; background: rgba(241, 245, 249, 0.8); border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-main); }
+    .mobile-nav-links { display: flex; flex-direction: column; gap: 0.5rem; }
+    .mobile-nav-item { padding: 0.85rem 1rem; font-size: 1.05rem; font-weight: 700; color: var(--text-main); text-decoration: none; border-radius: var(--radius-md); transition: background 0.2s ease; }
+    .mobile-nav-item:hover, .mobile-nav-item.active { background: rgba(99, 102, 241, 0.08); color: #6366f1; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+      .hero-left { display: flex; flex-direction: column; align-items: center; }
+      .hero-cta-group { justify-content: center; }
+      .hero-affiliations { display: flex; flex-direction: column; align-items: center; }
+      .affiliations-pills { justify-content: center; }
+      .services-grid, .journey-steps-grid, .certs-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-3col-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 768px) {
+      html, body { overflow-x: hidden; }
+      .app-layout { padding: 0 1rem; }
+      .nav-floating-container { top: 0.6rem; margin-bottom: 1.5rem; }
+      .nav-glass-bar { padding: 0.45rem 0.75rem; }
+      .nav-menu-pills { display: none; }
+      .nav-actions .talk-btn { display: none; }
+      .nav-actions .resume-btn-nav { padding: 0.4rem 0.85rem; font-size: 0.78rem; gap: 0.35rem; }
+      .nav-mobile-toggle { display: flex; width: 38px; height: 38px; }
+      .brand-icon-box { width: 36px; height: 36px; font-size: 0.95rem; }
+      .brand-name { font-size: 0.92rem; }
+      .brand-sub { display: none; }
+      .hero-section { padding: 0.5rem 0 2.5rem; }
+      .hero-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+      .hero-name { font-size: clamp(2.2rem, 8vw, 2.75rem); line-height: 1.12; }
+      .hero-title-gradient { font-size: clamp(1.25rem, 5vw, 1.6rem); line-height: 1.25; min-height: 2.4em; display: flex; align-items: center; justify-content: center; }
+      .hero-desc { font-size: 0.95rem; line-height: 1.65; max-width: 100%; margin: 0 auto 1.75rem; }
+      .hero-cta-group { width: 100%; max-width: 320px; margin: 0 auto 2rem; gap: 0.75rem; }
+      .hero-cta-group a { width: 100%; justify-content: center; padding: 0.8rem 1.25rem; font-size: 0.92rem; }
+      .organic-glass-card { max-width: 270px; height: 320px; border-radius: 36px 36px 85px 36px; margin: 0 auto; }
+      .hero-affiliations { width: 100%; }
+      .affiliations-pills { gap: 0.4rem; }
+      .affil-item { padding: 0.35rem 0.75rem; font-size: 0.74rem; }
+      .section-container { padding: 2.75rem 0; }
+      .section-main-title { font-size: clamp(1.65rem, 5.5vw, 2.05rem); line-height: 1.22; }
+      .section-sub-desc { font-size: 0.92rem; line-height: 1.6; }
+      .about-card-wrapper { padding: 1.75rem 1.15rem; border-radius: var(--radius-lg); }
+      .about-stats-row { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 1.5rem; }
+      .stat-glass-card { padding: 0.9rem 0.4rem; border-radius: var(--radius-sm); }
+      .stat-icon-wrap { width: 30px; height: 30px; margin-bottom: 0.35rem; }
+      .stat-bold-number { font-size: clamp(1.2rem, 4.5vw, 1.55rem); }
+      .stat-caption { font-size: 0.68rem; line-height: 1.2; }
+      .services-grid { grid-template-columns: 1fr; gap: 1rem; margin-top: 1.75rem; }
+      .service-glass-card { padding: 1.5rem 1.25rem; border-radius: var(--radius-md); }
+      .tools-dock-card { padding: 1.5rem 1rem; border-radius: var(--radius-lg); margin-top: 1.5rem; }
+      .tools-grid { gap: 0.5rem; }
+      .tech-dock-pill { padding: 0.45rem 0.85rem; font-size: 0.8rem; gap: 0.45rem; }
+      .projects-header-row { flex-direction: column; align-items: flex-start; gap: 1rem; margin-bottom: 1.75rem; }
+      .projects-header-row .btn-glass-pill { width: 100%; justify-content: center; }
+      .projects-3col-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .project-card-thumb { height: 180px; }
+      .project-card-body { padding: 1.35rem 1.15rem; }
+      .project-card-title { font-size: 1.18rem; }
+      .project-card-desc { font-size: 0.86rem; }
+      .project-actions-row { padding-top: 0.85rem; }
+      .project-link-action.btn-live { padding: 0.45rem 0.9rem; font-size: 0.8rem; }
+      .journey-steps-grid { grid-template-columns: 1fr; gap: 1rem; margin-top: 1.75rem; }
+      .step-glass-card { padding: 1.4rem 1.2rem; border-radius: var(--radius-md); }
+      .certs-grid { grid-template-columns: 1fr; gap: 1rem; margin-top: 1.75rem; }
+      .cert-glass-card { padding: 1.35rem 1.15rem; border-radius: var(--radius-md); }
+      .contact-card-wrapper { padding: 1.75rem 1.15rem; border-radius: var(--radius-lg); }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.25rem; }
+      .contact-info-col h3 { font-size: 1.35rem; line-height: 1.3; }
+      .contact-row-item { gap: 0.75rem; font-size: 0.88rem; }
+      .contact-row-item span { overflow-wrap: anywhere; word-break: break-word; }
+      .contact-icon-bubble { width: 38px; height: 38px; min-width: 38px; }
+      .social-pills-glass { gap: 0.65rem; }
+      .social-pill-btn { width: 38px; height: 38px; min-width: 38px; }
+      .contact-form-glass { padding: 1.35rem 1.15rem; border-radius: var(--radius-md); }
+      .glass-form-row { grid-template-columns: 1fr; gap: 1rem; }
+      .ambient-contact-orb { display: none; }
+      input, textarea { font-size: 16px !important; }
+      .form-submit-pill-btn { width: 100%; padding: 0.85rem 1.25rem; font-size: 0.95rem; }
+      .glass-footer { flex-direction: column; text-align: center; gap: 1.25rem; padding: 2rem 0; align-items: center; }
+      .footer-nav { flex-wrap: wrap; justify-content: center; gap: 0.75rem 1rem; }
+    }
+    @media (max-width: 480px) {
+      .app-layout { padding: 0 0.75rem; }
+      .hero-name { font-size: 2.15rem; }
+      .hero-title-gradient { font-size: 1.25rem; }
+      .organic-glass-card { max-width: 240px; height: 285px; }
+      .about-stats-row { gap: 0.4rem; }
+      .stat-glass-card { padding: 0.75rem 0.25rem; }
+      .stat-bold-number { font-size: 1.25rem; }
+      .stat-caption { font-size: 0.62rem; }
+      .tools-dock-card { padding: 1.25rem 0.75rem; }
+      .tech-dock-pill { padding: 0.4rem 0.7rem; font-size: 0.76rem; }
+      .about-card-wrapper, .contact-card-wrapper { padding: 1.4rem 0.9rem; }
+      .mobile-drawer-sheet { width: 90%; padding: 1.75rem 1.15rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="ambient-canvas">
+    <div class="ambient-orb ambient-orb-1"></div>
+    <div class="ambient-orb ambient-orb-2"></div>
+    <div class="ambient-orb ambient-orb-3"></div>
+  </div>
+
+  <div class="app-layout">
+
+    <!-- NAVBAR -->
+    <div class="nav-floating-container">
+      <header class="nav-glass-bar">
+        <a href="#home" class="nav-brand" aria-label="Bhagaban Prusty Home">
+          <div class="brand-icon-box">BP</div>
+          <div class="brand-text">
+            <span class="brand-name">Bhagaban Prusty</span>
+            <span class="brand-sub">Full-Stack Developer • 3rd Year B.Tech</span>
+          </div>
+        </a>
+
+        <ul class="nav-menu-pills">
+          <li><a href="#home" class="nav-pill-link active">Home</a></li>
+          <li><a href="#about" class="nav-pill-link">About</a></li>
+          <li><a href="#services" class="nav-pill-link">Services</a></li>
+          <li><a href="#projects" class="nav-pill-link">Work</a></li>
+          <li><a href="#journey" class="nav-pill-link">Journey</a></li>
+          <li><a href="#contact" class="nav-pill-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="#contact" class="nav-pill-btn talk-btn">
+            <span>Let's Talk</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+          <!-- APNA RESUME LINK YAHAN DAALEIN -->
+          <a href="#" target="_blank" rel="noopener noreferrer" class="nav-pill-btn resume-btn-nav" title="View Resume">
+            <span>Resume</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          </a>
+          <button class="nav-mobile-toggle" id="mobileToggleBtn" aria-label="Open Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+        </div>
+      </header>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="home">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <div class="hero-greeting-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <span>HELLO, I'M</span>
+          </div>
+
+          <h1 class="hero-name">Bhagaban Prusty</h1>
+          <h2 class="hero-title-gradient"><span id="typed-text">Full-Stack Developer</span><span class="typing-cursor">|</span></h2>
+
+          <p class="hero-desc">
+            3rd-year B.Tech Computer Science student at Nalanda Institute of Technology. I specialize in building scalable campus solutions, modern web applications, and solving real-world problems through code.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn-dark-pill">
+              <span>View My Work</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+            <!-- APNA RESUME LINK YAHAN DAALEIN -->
+            <a href="#" class="btn-glass-pill">
+              <span>Download CV</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            </a>
+          </div>
+
+          <div class="hero-affiliations">
+            <div class="affiliations-label">Affiliated &amp; Recognized By</div>
+            <div class="affiliations-pills">
+              <div class="affil-item">
+                <span class="affil-dot"></span>
+                <span>Nalanda Institute of Technology</span>
+              </div>
+              <div class="affil-item">
+                <span class="affil-dot" style="background: #a855f7;"></span>
+                <span>Medhamanthan 1.0 Winner</span>
+              </div>
+              <div class="affil-item">
+                <span class="affil-dot" style="background: #10b981;"></span>
+                <span>Vercel Deployments</span>
+              </div>
+              <div class="affil-item">
+                <span class="affil-dot" style="background: #3b82f6;"></span>
+                <span>Supabase</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual-col">
+          <div class="organic-glass-card">
+            <!-- APNI PHOTO YAHAN DAALEIN (same folder mein photo rakhein aur naam yahan likhein) -->
+            <img src="image portfolio.png" alt="Bhagaban Prusty" class="hero-headshot-img" style="background: #cbd5e1;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section-container" id="about">
+      <div class="about-card-wrapper">
+        <div class="about-grid">
+          <div>
+            <span class="section-label-pill">ABOUT ME</span>
+            <h2 class="section-main-title">Designing with Purpose, Building with Code</h2>
+            <div class="about-text-content">
+              <p>
+                I am a 3rd-year Computer Science Engineering student at <strong>Nalanda Institute of Technology</strong>.
+              </p>
+              <p>
+                I am a passionate full-stack developer who loves solving real-world problems through code. From architecting complex campus management systems to experimenting with modern web frameworks like Next.js, I focus on creating impactful and user-friendly digital experiences.
+              </p>
+            </div>
+            <a href="#journey" class="btn-glass-pill" style="margin-top: 1rem;">
+              <span>More About My Journey</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+          </div>
+
+          <div>
+            <div class="about-stats-row">
+              <div class="stat-glass-card reveal-item delay-1">
+                <div class="stat-icon-wrap">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                </div>
+                <div class="stat-bold-number counter-value" data-target="3" data-suffix="rd">3rd</div>
+                <div class="stat-caption">Year Standing</div>
+              </div>
+
+              <div class="stat-glass-card reveal-item delay-2">
+                <div class="stat-icon-wrap" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                </div>
+                <!-- APNA CGPA YAHAN DAALEIN -->
+                <div class="stat-bold-number counter-value" data-target="8.0" data-decimals="1">8.0</div>
+                <div class="stat-caption">Current CGPA</div>
+              </div>
+
+              <div class="stat-glass-card reveal-item delay-3">
+                <div class="stat-icon-wrap" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                </div>
+                <div class="stat-bold-number counter-value" data-target="1" data-suffix="+">1+</div>
+                <div class="stat-caption">Projects Built</div>
+              </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; padding: 1.25rem 1.5rem; background: rgba(255, 255, 255, 0.5); border: 1px solid rgba(255, 255, 255, 0.85); border-radius: var(--radius-md);">
+              <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.25rem;">
+                📍 Based in Bhubaneswar, Odisha
+              </div>
+              <div style="font-size: 0.82rem; color: var(--text-muted);">
+                Enrolled at Nalanda Institute of Technology (2023–2027). Open to internships and software engineering roles.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="section-container" id="services">
+      <span class="section-label-pill">WHAT I DO</span>
+      <h2 class="section-main-title">Core Technical Focus Areas</h2>
+      <p class="section-sub-desc">
+        Bridging the gap between user requirements and robust, full-stack production deployments.
+      </p>
+
+      <div class="services-grid">
+        <div class="service-glass-card reveal-item delay-1">
+          <div>
+            <div class="service-icon-box icon-amber">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+            </div>
+            <h3 class="service-title">Frontend Development</h3>
+            <p class="service-desc">
+              Designing responsive and interactive user interfaces using React, Next.js, and Tailwind CSS.
+            </p>
+          </div>
+          <a href="#projects" class="service-arrow-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+        </div>
+
+        <div class="service-glass-card reveal-item delay-2">
+          <div>
+            <div class="service-icon-box icon-violet">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+            </div>
+            <h3 class="service-title">Backend &amp; APIs</h3>
+            <p class="service-desc">
+              Developing scalable backend architectures and REST APIs for seamless data flow.
+            </p>
+          </div>
+          <a href="#projects" class="service-arrow-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+        </div>
+
+        <div class="service-glass-card reveal-item delay-3">
+          <div>
+            <div class="service-icon-box icon-blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            </div>
+            <h3 class="service-title">Database Management</h3>
+            <p class="service-desc">
+              Designing relational and NoSQL databases (SQL, Supabase) for optimized data storage and retrieval.
+            </p>
+          </div>
+          <a href="#projects" class="service-arrow-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+        </div>
+
+        <div class="service-glass-card reveal-item delay-4">
+          <div>
+            <div class="service-icon-box icon-teal">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+            </div>
+            <h3 class="service-title">Problem Solving</h3>
+            <p class="service-desc">
+              Leveraging strong foundations in Data Structures, Algorithms, and Object-Oriented Programming.
+            </p>
+          </div>
+          <a href="#projects" class="service-arrow-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLS SECTION -->
+    <section class="section-container" style="padding-top: 1rem;" id="stack">
+      <span class="section-label-pill">TOOLS &amp; SKILLS</span>
+      <h2 class="section-main-title">Technologies I Use</h2>
+
+      <div class="tools-dock-card">
+        <div class="tools-grid">
+          <div class="tech-dock-pill"><span class="tech-icon-dot"></span><span>C</span></div>
+          <div class="tech-dock-pill"><span class="tech-icon-dot" style="background: #10b981;"></span><span>Java</span></div>
+          <div class="tech-dock-pill"><span class="tech-icon-dot" style="background: #06b6d4;"></span><span>Python</span></div>
+          <div class="tech-dock-pill"><span class="tech-icon-dot" style="background: #22c55e;"></span><span>SQL</span></div>
+          <div class="tech-dock-pill"><span class="tech-icon-dot" style="background: #f59e0b;"></span><span>HTML/CSS</span></div>
+          <div class="tech-dock-pill"><span class="tech-icon-dot" style="background: #ef4444;"></span><span>React</span></div>
+          <div class="tech-dock-pill"><span class="tech-icon-dot" style="background: #8b5cf6;"></span><span>Next.js</span></div>
+          <div class="tech-dock-pill"><span class="tech-icon-dot" style="background: #3b82f6;"></span><span>Tailwind CSS</span></div>
+          <div class="tech-dock-pill"><span class="tech-icon-dot" style="background: #ec4899;"></span><span>Supabase</span></div>
+          <div class="tech-dock-pill"><span class="tech-icon-dot" style="background: #64748b;"></span><span>Git &amp; GitHub</span></div>
+          <div class="tech-dock-pill"><span class="tech-icon-dot" style="background: #d97706;"></span><span>VS Code</span></div>
+          <div class="tech-dock-pill"><span class="tech-icon-dot" style="background: #6366f1;"></span><span>Vercel</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="section-container" id="projects">
+      <div class="projects-header-row">
+        <div>
+          <span class="section-label-pill">FEATURED PROJECTS</span>
+          <h2 class="section-main-title">Selected Work</h2>
+          <p class="section-sub-desc">
+            Engineered software solutions tackling campus management and full-stack web experiences.
+          </p>
+        </div>
+        <a href="https://github.com/bhagabanprusty8260-web" target="_blank" rel="noopener noreferrer" class="btn-glass-pill">
+          <span>View GitHub Profile</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+      </div>
+
+      <div class="projects-3col-grid">
+        <!-- CampusOS -->
+        <article class="project-glass-card reveal-item delay-1">
+          <div class="project-card-thumb">
+            <span class="project-badge-pill" style="background: rgba(16, 185, 129, 0.9); display: inline-flex; align-items: center; gap: 6px;"><span class="live-radar-dot"></span> Live on Vercel</span>
+            <!-- Project Image -->
+            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80" alt="CampusOS">
+          </div>
+          <div class="project-card-body">
+            <div>
+              <div class="project-meta-top">Full-Stack • EdTech</div>
+              <h3 class="project-card-title">CampusOS</h3>
+              <p class="project-card-desc">
+                Campus life, debugged. A comprehensive campus management system designed for Indian colleges. Streamlines student activities, administrative workflows, and real-time data management.
+              </p>
+              <div class="project-tech-tags">
+                <span class="project-tech-tag">Next.js</span>
+                <span class="project-tech-tag">TypeScript</span>
+                <span class="project-tech-tag">Tailwind</span>
+                <span class="project-tech-tag">Supabase</span>
+              </div>
+            </div>
+            <div class="project-actions-row">
+              <a href="https://github.com/bhagabanprusty8260-web" target="_blank" rel="noopener noreferrer" class="project-link-action">
+                <span>Code</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+              <a href="https://campusos-coral.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link-action btn-live">
+                <span>Live Demo</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Placeholder 2 -->
+        <article class="project-glass-card reveal-item delay-2" style="opacity: 0.6;">
+          <div class="project-card-thumb" style="display: flex; align-items: center; justify-content: center; background: #e2e8f0;">
+             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          </div>
+          <div class="project-card-body">
+            <div>
+              <div class="project-meta-top">Coming Soon</div>
+              <h3 class="project-card-title">Your Next Project</h3>
+              <p class="project-card-desc">
+                This space is reserved for your upcoming project. Add your next big idea here.
+              </p>
+              <div class="project-tech-tags">
+                <span class="project-tech-tag">Tech Stack</span>
+              </div>
+            </div>
+            <div class="project-actions-row">
+              <a href="#" class="project-link-action" style="cursor: not-allowed;">Code</a>
+              <a href="#" class="project-link-action btn-live" style="background: #64748b; cursor: not-allowed;">Soon</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Placeholder 3 -->
+        <article class="project-glass-card reveal-item delay-3" style="opacity: 0.6;">
+          <div class="project-card-thumb" style="display: flex; align-items: center; justify-content: center; background: #e2e8f0;">
+             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          </div>
+          <div class="project-card-body">
+            <div>
+              <div class="project-meta-top">Coming Soon</div>
+              <h3 class="project-card-title">Your Next Project</h3>
+              <p class="project-card-desc">
+                This space is reserved for your upcoming project. Add your next big idea here.
+              </p>
+              <div class="project-tech-tags">
+                <span class="project-tech-tag">Tech Stack</span>
+              </div>
+            </div>
+            <div class="project-actions-row">
+              <a href="#" class="project-link-action" style="cursor: not-allowed;">Code</a>
+              <a href="#" class="project-link-action btn-live" style="background: #64748b; cursor: not-allowed;">Soon</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- JOURNEY SECTION -->
+    <section class="section-container" id="journey">
+      <span class="section-label-pill">MY PROCESS &amp; PATH</span>
+      <h2 class="section-main-title">Engineering Journey &amp; Milestones</h2>
+      <p class="section-sub-desc">
+        Chronological milestones spanning hackathons, projects, and academics.
+      </p>
+
+      <div class="journey-steps-grid">
+        <div class="step-glass-card reveal-item delay-1">
+          <div class="step-num-badge">01</div>
+          <h3 class="step-card-title">Hackathon Winner</h3>
+          <div class="step-org-subtitle">Medhamanthan 1.0</div>
+          <p class="step-desc">
+            Won 1st Prize in the Intra-college hackathon for building an innovative tech solution within a competitive timeframe.
+          </p>
+        </div>
+
+        <div class="step-glass-card reveal-item delay-2">
+          <div class="step-num-badge">02</div>
+          <h3 class="step-card-title">Creator of CampusOS</h3>
+          <div class="step-org-subtitle">Full-Stack Project</div>
+          <p class="step-desc">
+            Architected and deployed a comprehensive campus management system using Next.js, TypeScript, and Supabase.
+          </p>
+        </div>
+
+        <div class="step-glass-card reveal-item delay-3">
+          <div class="step-num-badge">03</div>
+          <h3 class="step-card-title">B.Tech CSE Student</h3>
+          <div class="step-org-subtitle">Nalanda Institute of Technology</div>
+          <p class="step-desc">
+            2023 – 2027. Currently in 3rd Year. Focused on Data Structures, Algorithms, DBMS, and Full-Stack Web Development.
+          </p>
+        </div>
+
+        <div class="step-glass-card reveal-item delay-4">
+          <div class="step-num-badge">04</div>
+          <h3 class="step-card-title">Continuous Learning</h3>
+          <div class="step-org-subtitle">Self-Taught Developer</div>
+          <p class="step-desc">
+            Exploring new technologies like React, modern JavaScript frameworks, and scalable backend architectures.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CREDENTIALS SECTION (EMPTY PLACEHOLDERS) -->
+    <section class="section-container" id="credentials">
+      <span class="section-label-pill">VERIFIED EXPERTISE</span>
+      <h2 class="section-main-title">Certifications &amp; Accreditations</h2>
+      <p class="section-sub-desc">
+        Rigorous third-party certifications evaluating software development proficiency. (To be updated)
+      </p>
+
+      <div class="certs-grid">
+        <div class="cert-glass-card reveal-item delay-1" style="opacity: 0.6; border-style: dashed;">
+          <div>
+            <div class="cert-issuer-badge" style="color: #64748b;">Coming Soon</div>
+            <h3 class="cert-name">Your Certification Here</h3>
+            <div class="cert-highlight" style="color: #64748b;">Pending</div>
+            <p class="cert-skills">Add details about your future certifications here.</p>
+          </div>
+        </div>
+        
+        <div class="cert-glass-card reveal-item delay-2" style="opacity: 0.6; border-style: dashed;">
+          <div>
+            <div class="cert-issuer-badge" style="color: #64748b;">Coming Soon</div>
+            <h3 class="cert-name">Your Certification Here</h3>
+            <div class="cert-highlight" style="color: #64748b;">Pending</div>
+            <p class="cert-skills">Add details about your future certifications here.</p>
+          </div>
+        </div>
+
+        <div class="cert-glass-card reveal-item delay-3" style="opacity: 0.6; border-style: dashed;">
+          <div>
+            <div class="cert-issuer-badge" style="color: #64748b;">Coming Soon</div>
+            <h3 class="cert-name">Your Certification Here</h3>
+            <div class="cert-highlight" style="color: #64748b;">Pending</div>
+            <p class="cert-skills">Add details about your future certifications here.</p>
+          </div>
+        </div>
+
+        <div class="cert-glass-card reveal-item delay-4" style="opacity: 0.6; border-style: dashed;">
+          <div>
+            <div class="cert-issuer-badge" style="color: #64748b;">Coming Soon</div>
+            <h3 class="cert-name">Your Certification Here</h3>
+            <div class="cert-highlight" style="color: #64748b;">Pending</div>
+            <p class="cert-skills">Add details about your future certifications here.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section-container" id="contact">
+      <div class="contact-card-wrapper">
+        <div class="contact-grid">
+          <div class="contact-info-col reveal-item delay-1">
+            <span class="section-label-pill">LET'S CONNECT</span>
+            <h3>Have a project in mind?<br>Let's create something amazing together.</h3>
+            <p>
+              I am currently seeking internship opportunities and collaborations. Whether you want to discuss a role, explore a project, or just talk tech, my inbox is open!
+            </p>
+
+            <div class="contact-items-list">
+              <!-- APNA EMAIL DAALEIN -->
+              <a href="mailto:bhagabanprusty8260@gmail.com" class="contact-row-item">
+                <div class="contact-icon-bubble">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <span>bhagabanprusty8260@gmail.com</span>
+              </a>
+
+              <div class="contact-row-item">
+                <div class="contact-icon-bubble">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <span>Bhubaneswar, Odisha, India</span>
+              </div>
+            </div>
+
+            <!-- APNE SOCIAL LINKS DAALEIN -->
+            <div class="social-pills-glass">
+              <a href="https://www.linkedin.com/in/bhagaban-prusty-2a754132a" target="_blank" rel="noopener noreferrer" class="social-pill-btn" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
+              <a href="https://github.com/bhagabanprusty8260-web" target="_blank" rel="noopener noreferrer" class="social-pill-btn" aria-label="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+              <a href="https://x.com/Bhagaban_2007" target="_blank" rel="noopener noreferrer" class="social-pill-btn" aria-label="Twitter">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-form-glass reveal-item delay-2">
+            <div id="formStatusBanner" class="form-status-banner"></div>
+
+            <form id="contactForm" onsubmit="handleFormSubmit(event)">
+              <div class="glass-form-row">
+                <div>
+                  <input type="text" id="senderName" class="glass-input-field" placeholder="Your Name *" required>
+                </div>
+                <div>
+                  <input type="email" id="senderEmail" class="glass-input-field" placeholder="Your Email *" required>
+                </div>
+              </div>
+
+              <div style="margin-bottom: 1rem;">
+                <input type="text" id="messageSubject" class="glass-input-field" placeholder="Subject / Opportunity">
+              </div>
+
+              <textarea id="messageBody" class="glass-input-field glass-textarea" placeholder="Your Message *" required></textarea>
+
+              <button type="submit" id="submitBtn" class="form-submit-pill-btn">
+                <span>Send Message</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+
+              <div style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; font-size: 0.74rem; color: var(--text-muted); margin-top: 0.85rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <span>Direct delivery to my inbox</span>
+              </div>
+            </form>
+
+            <div class="ambient-contact-orb"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="glass-footer">
+      <div class="footer-left">
+        <div class="brand-icon-box" style="width: 32px; height: 32px; font-size: 0.85rem;">BP</div>
+        <span class="footer-copy">© 2026 Bhagaban Prusty • Built with Passion &amp; Precision</span>
+      </div>
+
+      <div class="footer-nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Work</a>
+        <a href="#journey">Journey</a>
+        <a href="#contact">Contact</a>
+        <a href="#home" style="color: #6366f1;">Back to Top ↑</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-drawer-overlay" id="mobileDrawer">
+    <div class="mobile-drawer-sheet">
+      <div>
+        <div class="mobile-drawer-header">
+          <div class="nav-brand">
+            <div class="brand-icon-box">BP</div>
+            <div class="brand-text">
+              <span class="brand-name">Bhagaban Prusty</span>
+              <span class="brand-sub">Full-Stack Developer</span>
+            </div>
+          </div>
+          <button class="mobile-drawer-close" id="mobileCloseBtn" aria-label="Close Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <nav class="mobile-nav-links">
+          <a href="#home" class="mobile-nav-item active">Home</a>
+          <a href="#about" class="mobile-nav-item">About Me</a>
+          <a href="#services" class="mobile-nav-item">Services</a>
+          <a href="#stack" class="mobile-nav-item">Technologies</a>
+          <a href="#projects" class="mobile-nav-item">Selected Work</a>
+          <a href="#journey" class="mobile-nav-item">Engineering Journey</a>
+          <a href="#credentials" class="mobile-nav-item">Credentials</a>
+          <a href="#contact" class="mobile-nav-item">Contact</a>
+        </nav>
+      </div>
+
+      <div style="padding-top: 2rem; border-top: 1px solid #e2e8f0;">
+        <!-- APNA RESUME LINK YAHAN DAALEIN -->
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-dark-pill" style="width: 100%; justify-content: center; margin-bottom: 0.75rem;">
+          <span>View Resume (PDF)</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        </a>
+        <a href="mailto:bhagabanprusty8260@gmail.com" class="btn-glass-pill" style="width: 100%; justify-content: center;">
+          <span>Email Me</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast-notification">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <span id="toastText">Copied to clipboard!</span>
+  </div>
+
+  <script>
+    // JS INITIALIZATIONS
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const mobileToggle = document.getElementById('mobileToggleBtn');
+    const mobileClose = document.getElementById('mobileCloseBtn');
+
+    function openMenu() {
+      mobileDrawer.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileDrawer.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    if (mobileToggle) mobileToggle.addEventListener('click', openMenu);
+    if (mobileClose) mobileClose.addEventListener('click', closeMenu);
+
+    if (mobileDrawer) {
+      mobileDrawer.addEventListener('click', (e) => {
+        if (e.target === mobileDrawer) {
+          closeMenu();
+        }
+      });
+    }
+
+    document.querySelectorAll('.mobile-nav-item').forEach(item => {
+      item.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-pill-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 140;
+        if (window.pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const text = document.getElementById('toastText');
+      if (!toast || !text) return;
+
+      text.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // CONTACT FORM LOGIC (APNA EMAIL YAHAN DAALEIN)
+    const RECIPIENT_EMAIL = 'bhagabanprusty8260@gmail.com';
+
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('submitBtn');
+      const banner = document.getElementById('formStatusBanner');
+      const form = document.getElementById('contactForm');
+
+      const name = document.getElementById('senderName').value.trim();
+      const email = document.getElementById('senderEmail').value.trim();
+      const subject = document.getElementById('messageSubject').value.trim() || `New Portfolio Message from ${name}`;
+      const message = document.getElementById('messageBody').value.trim();
+
+      submitBtn.disabled = true;
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span>Sending...</span>';
+
+      try {
+        const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(RECIPIENT_EMAIL)}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            _subject: subject,
+            message: message,
+            _captcha: 'false',
+            _template: 'table'
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok || data.success === 'true' || data.success === true) {
+          banner.className = 'form-status-banner success';
+          banner.innerHTML = `<strong>✓ Message Dispatched!</strong><p style="margin-top:0.25rem;">Thank you ${name}. Your message has been sent directly to my inbox.</p>`;
+          banner.style.display = 'block';
+          form.reset();
+          showToast('Message sent successfully!');
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch (err) {
+        banner.className = 'form-status-banner error';
+        banner.innerHTML = `<strong>Notice:</strong> Direct delivery encountered an issue. <a href="mailto:${RECIPIENT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('From: ' + name + ' (' + email + ')\\n\\n' + message)}" target="_blank" style="color:#4f46e5; text-decoration:underline; font-weight:700;">Click here to send directly via your email app.</a>`;
+        banner.style.display = 'block';
+        window.open(`mailto:${RECIPIENT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('From: ' + name + ' (' + email + ')\\n\\n' + message)}`, '_blank');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    }
+
+    // TYPING EFFECT
+    const typedEl = document.getElementById('typed-text');
+    if (typedEl) {
+      const titles = [
+        'Full-Stack Developer',
+        'B.Tech CSE Student',
+        'CampusOS Creator',
+        'Hackathon Winner'
+      ];
+      let titleIdx = 0;
+      let charIdx = titles[0].length;
+      let isDeleting = true;
+      let typeSpeed = 50;
+
+      function typeLoop() {
+        const currentTitle = titles[titleIdx];
+        if (isDeleting) {
+          charIdx--;
+          typedEl.textContent = currentTitle.substring(0, charIdx);
+          typeSpeed = 35;
+        } else {
+          charIdx++;
+          typedEl.textContent = currentTitle.substring(0, charIdx);
+          typeSpeed = 65;
+        }
+
+        if (!isDeleting && charIdx === currentTitle.length) {
+          isDeleting = true;
+          typeSpeed = 2200;
+        } else if (isDeleting && charIdx === 0) {
+          isDeleting = false;
+          titleIdx = (titleIdx + 1) % titles.length;
+          typeSpeed = 400;
+        }
+
+        setTimeout(typeLoop, typeSpeed);
+      }
+      setTimeout(typeLoop, 2000);
+    }
+
+    // SCROLL REVEAL
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal-item').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // STAT COUNTERS
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target;
+          const target = parseFloat(counter.getAttribute('data-target'));
+          const suffix = counter.getAttribute('data-suffix') || '';
+          const decimals = parseInt(counter.getAttribute('data-decimals') || '0', 10);
+          const duration = 1400;
+          const startTime = performance.now();
+
+          function updateCounter(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            const currentVal = easeProgress * target;
+
+            counter.textContent = currentVal.toFixed(decimals) + suffix;
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              counter.textContent = target.toFixed(decimals) + suffix;
+            }
+          }
+          requestAnimationFrame(updateCounter);
+          statObserver.unobserve(counter);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.counter-value').forEach(el => {
+      statObserver.observe(el);
+    });
+  </script>
+</body>
+
+</html>
